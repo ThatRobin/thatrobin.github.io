@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html>
-   <head>
-      <title>Redirect to Funni</title>
-      <meta http-equiv = "refresh" content = "0; url = steam://rungameid/GetURLParameter('id')" />
-   </head>
-   <body>
-    <p>Funni redirected</p>
-   </body>
-   <script>
-    function GetURLParameter(sParam) {
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++) 
-    {
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == sParam) 
-        {
-            return sParameterName[1];
-        }
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirect to Steam</title>
+<script>
+  window.onload = function() {
+    // Get the ID parameter from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    // Check if ID parameter exists
+    if (id) {
+      // Construct the Steam URL
+      const steamURL = `steam://rungameid/${id}`;
+
+      // Redirect to the Steam URL
+      window.location.href = steamURL;
+    } else {
+      // If ID parameter is not provided, do something else or show an error message
+      console.error('No ID parameter found in the URL.');
+      // You can redirect to a default page or display an error message here.
     }
-}​
-   </script>
+  };
+</script>
+</head>
+<body>
+  <p>Redirecting to Steam...</p>
+</body>
 </html>
