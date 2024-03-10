@@ -7,23 +7,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #7e6666;
+            width: calc(100% - 20%);
+            height: calc(100% - 20%);
+            padding: 10%;
         }
         .container {
-            max-width: 800px;
-            margin: 20px 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: lightblue;
             position: relative;
             overflow: hidden;
         }
         .left-container,
         .right-container {
             padding: 20px;
-            height: 560px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -40,15 +36,15 @@
         h1 {
             text-align: center;
             color: #333;
+            font-size: 150px; /* Adjust the font size as needed */
         }
         p {
-            font-size: 18px;
+            font-size: 60px;
             line-height: 1.6;
             color: #555;
         }
         img {
             max-width: 100%;
-            height: auto;
             display: block;
             border-radius: 8px;
         }
@@ -70,13 +66,16 @@
         .button:hover {
             background-color: #45a049;
         }
+        a {
+            font-size: 60px;
+        }
     </style>
 </head>
 <body>
     <div class="container" id="swipeContainer">
         <div class="left-container" id="leftContainer">
             <h1>Happy Mother's Day!</h1>
-            <img src="https://media.discordapp.net/attachments/877648286801088552/1216401156511895602/Screenshot_20240310_150336_Gallery.jpg?ex=660040db&is=65edcbdb&hm=f03cdaf45f81c19b15734f1b6d2dac41e8a9cd82364730d0b9bec35ed5b187be&=&format=webp&width=503&height=676" alt="Happy Mother's Day">
+            <img src="https://media.discordapp.net/attachments/877648286801088552/1216401156511895602/Screenshot_20240310_150336_Gallery.jpg?ex=660040db&is=65edcbdb&hm=f03cdaf45f81c19b15734f1b6d2dac41e8a9cd82364730d0b9bec35ed5b187be&=&format=webp&width=1003&height=1676" alt="Happy Mother's Day">
         </div>
         <div class="right-container" id="rightContainer">
             <div class="text">
@@ -149,7 +148,7 @@
 
         function replaceTextWithImage() {
             const textDiv = document.querySelector('.text');
-            textDiv.innerHTML = '<img src="https://media.discordapp.net/attachments/877648286801088552/1216409618335531099/IMG_20230704_192042.jpg?ex=660048bc&is=65edd3bc&hm=bf17f7cf6b797e73c82d2b34e4f78e4f085ee1e5d7bbd75bf6f4a29b42734552&=&format=webp&width=346&height=537" alt="Bonus Surprise">';
+            textDiv.innerHTML = '<img src="https://media.discordapp.net/attachments/877648286801088552/1216409618335531099/IMG_20230704_192042.jpg?ex=660048bc&is=65edd3bc&hm=bf17f7cf6b797e73c82d2b34e4f78e4f085ee1e5d7bbd75bf6f4a29b42734552&=&format=webp&width=1346&height=2537" alt="Bonus Surprise">';
         }
     </script>
 </body>
