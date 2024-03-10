@@ -1,31 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirect to Steam</title>
-<script>
-  window.onload = function() {
-    // Get the ID parameter from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-
-    // Check if ID parameter exists
-    if (id) {
-      // Construct the Steam URL
-      const steamURL = `steam://rungameid/${id}`;
-
-      // Redirect to the Steam URL
-      window.location.href = steamURL;
-    } else {
-      // If ID parameter is not provided, do something else or show an error message
-      console.error('No ID parameter found in the URL.');
-      // You can redirect to a default page or display an error message here.
-    }
-  };
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Mother's Day!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #7e6666;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .left-container,
+        .right-container {
+            padding: 20px;
+            height: 560px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .left-container {
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            display: block;
+        }
+        .right-container {
+            display: none;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-  <p>Redirecting to Steam...</p>
+    <div class="container" id="swipeContainer">
+        <div class="left-container" id="leftContainer">
+            <h1>Happy Mother's Day!</h1>
+            <img src="https://media.discordapp.net/attachments/877648286801088552/1216401156511895602/Screenshot_20240310_150336_Gallery.jpg?ex=660040db&is=65edcbdb&hm=f03cdaf45f81c19b15734f1b6d2dac41e8a9cd82364730d0b9bec35ed5b187be&=&format=webp&width=503&height=676" alt="Happy Mother's Day">
+        </div>
+        <div class="right-container" id="rightContainer">
+            <div class="text">
+                <p>Dear Mum,</p>
+            <p>I want to take a moment to express my deepest gratitude for everything you've done for me. Your love, guidance, and support have shaped me into the person I am today.</p>
+            <p>I am so grateful to have you in my life, and I cherish every moment we spend together.</p>
+            <p>Happy Mother's Day! I love you more than words can express.</p>
+            <p>Love,</p>
+            <p>Robin xxx</p>
+            </div>
+            <div class="button-container">
+                <a class="button" onclick="replaceTextWithImage()">Extra Bonus Suprise</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Swipe detection
+        let startX;
+        let startY;
+        let cacheX;
+        let threshold = 20; // Minimum distance to consider it a swipe
+        document.getElementById('swipeContainer').addEventListener('touchstart', touchStart, false);
+        document.getElementById('swipeContainer').addEventListener('touchmove', touchMove, false);
+        document.getElementById('swipeContainer').addEventListener('touchend', touchEnd, false);
+        function touchStart(event) {
+            startX = event.touches[0].pageX;
+            startY = event.touches[0].pageY;
+            cacheX = startX; // Cache initial touch position
+        }
+        function touchMove(event) {
+            if (!startX || !startY) {
+                return;
+            }
+            let deltaX = event.touches[0].pageX - startX;
+            let deltaY = event.touches[0].pageY - startY;
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                event.preventDefault(); // Prevent scrolling while swiping
+            }
+            if (Math.abs(deltaX) >= threshold) {
+                cacheX = event.touches[0].pageX; // Cache current touch position
+            }
+        }
+
+        function touchEnd() {
+            if (Math.abs(cacheX - startX) >= threshold) {
+                if (cacheX > startX) {
+                    showLeft();
+                } else {
+                    showRight();
+                }
+            }
+            startX = null;
+            startY = null;
+            cacheX = null;
+        }
+
+
+        // Show left div
+        function showLeft() {
+            document.getElementById('leftContainer').style.display = 'block';
+            document.getElementById('rightContainer').style.display = 'none';
+        }
+
+        // Show right div
+        function showRight() {
+            document.getElementById('leftContainer').style.display = 'none';
+            document.getElementById('rightContainer').style.display = 'block';
+        }
+
+        function replaceTextWithImage() {
+            const textDiv = document.querySelector('.text');
+            textDiv.innerHTML = '<img src="https://media.discordapp.net/attachments/877648286801088552/1216409618335531099/IMG_20230704_192042.jpg?ex=660048bc&is=65edd3bc&hm=bf17f7cf6b797e73c82d2b34e4f78e4f085ee1e5d7bbd75bf6f4a29b42734552&=&format=webp&width=346&height=537" alt="Bonus Surprise">';
+        }
+    </script>
 </body>
 </html>
